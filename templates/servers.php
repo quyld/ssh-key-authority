@@ -86,6 +86,7 @@
 			<thead>
 				<tr>
 					<th>Hostname</th>
+					<th>Notes</th>
 					<th>Config</th>
 					<?php if($this->get('admin')) { ?>
 					<th>Admins</th>
@@ -118,6 +119,11 @@
 						<?php if($server->pending_requests > 0 && $this->get('admin')) { ?>
 						<a href="<?php outurl('/servers/'.urlencode($server->hostname)) ?>"><span class="badge" title="Pending requests"><?php out(number_format($server->pending_requests)) ?></span></a>
 						<?php } ?>
+					</td>
+					<td>
+						<?php foreach($server->list_notes() as $server_note): ?>
+							<div><?php echo $server_note->note; ?> </div>
+						<?php endforeach; ?>
 					</td>
 					<td class="nowrap">
 						<?php
